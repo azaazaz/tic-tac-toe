@@ -2,6 +2,15 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Player {
+    private String symbol;
+
+    public Player (String symbol){
+        this.symbol = symbol;
+    }
+
+    public String getSymbol(){
+        return this.symbol;
+    }
 
     public Integer ask (){
         BufferedReader reader = new BufferedReader(

@@ -1,31 +1,21 @@
 public class App {
-    public static void main(String[] args) throws Exception {        
-
-        Player PlayerO = new Player();
-        Player PlayerX = new Player();
+    public static void main(String[] args) throws Exception {
+        Player[] players = new Player[] {
+            new Player("O"),
+            new Player("X")
+        };
         Board board = new Board();
-        Integer coord;
+
         board.showBoard();
-
-        
         while (true){
-            System.out.println("O's Turn");
-            coord = PlayerO.ask();
-            board.refresh(coord,"O");
-            board.showBoard();
-            if (board.victory()){
-                System.out.println("GAME OVER! Player O won!!!");
-                break;
-            }
-            
+            for (Player player : players) {
+                board.refresh(player.ask(), player.getSymbol());
+                board.showBoard();
 
-            System.out.println("X's Turn");
-            coord = PlayerX.ask();
-            board.refresh(coord,"X");
-            board.showBoard();
-            if (board.victory()){
-                System.out.println("GAME OVER! Player X won!!!");
-                break;
+                if (board.victory()) {
+                    System.out.println("GAME OVER! Someone won!!!");
+                    return;
+                }
             }
         }
     }
